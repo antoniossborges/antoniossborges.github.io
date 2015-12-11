@@ -4,8 +4,7 @@
 
 <title>Sistema Delivery</title>
 <link rel="stylesheet"	href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+
 <script
 	src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
 
@@ -18,8 +17,7 @@
 		<button type="button" class="btn btn-info btn-lg" data-toggle="modal"
 			data-target="#myModal" id="pesquisarCliente" onclick="verificar();" style="display:none">Pesquisar</button>
 	
-		<button type="button" class="btn btn-info btn-lg" data-toggle="modal"
-			data-target="#myModalCadastrar" id="criarCliente"  style="display:none">Cadastrar</button>
+		
 			
 		<button type="button" class="btn btn-info btn-lg" data-toggle="modal" 
 			id="logout">Sair</button>
@@ -87,49 +85,7 @@
 		</div>
 	</div>
 
-	<div class="modal fade" id="myModalCadastrar" role="dialog"
-		style="display: none;">
-		<div class="modal-dialog">
 
-			<!-- Modal content-->
-			<div class="modal-content"  >
-				<div class="modal-header">
-					<button type="button" class="close" id="esconder"data-dismiss="modal">×</button>
-					<h4 class="modal-title">Cadastro de Clientes</h4>
-				</div>
-				<div class="modal-body">
-					<div class="form-group">
-						<form id="criarClienteForm">							
-		              Nome: 
-		                <input type="text" name="nome" id="nome" class="form-control" placeholder="Informe o nome" required />
-		              Telefone: 
-		                <input type="text" name="telefone" id="telefoneP" class="form-control" required placeholder="Informe o telefone com apenas números" maxlength="14" onkeypress="mascara(this)">                 
-		                
-		              Rua:
-						<input type="text" name="rua" id="rua" class="form-control" placeholder="Informe a rua">
-					  Número: 
-		                <input type="text" name="numero" id="numero" class="form-control" placeholder="Informe o número"> 
-		              Bairro: 
-		                <input type="text" name="bairro" id="bairro" class="form-control" placeholder="Informe o bairro"> 
-		              Ponto referencia 
-		                <input type="text" name="pontoReferencia"	id="pontoReferencia" class="form-control" placeholder="Informe um ponto de referência"> 
-		              Cidade 
-		                <input type="text" name="cidade" id="cidade" class="form-control" placeholder="Informe a cidade">
-
-
-						<input type="button" value="cadastrar" id="cadastrar"  class="btn btn-default" onclick="cadastrarCliente();"/>
-
-
-						</form>
-					</div>
-				</div>
-				<div class="modal-footer">
-					<button type="button" class="btn btn-default" data-dismiss="modal"
-						class="btn btn-default">Fechar</button>
-				</div>
-			</div>
-
-		</div>
 	</div>
 	</div>
 
