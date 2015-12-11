@@ -1,0 +1,147 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<title>Sistema Delivery</title>
+<link rel="stylesheet"	href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<script
+	src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+<script src="js/jquery-1.10.2.min.js"></script>
+<script src="js/json.js"></script>
+<script src="js/cliente.js"></script>
+<link href="css/style.css" rel="stylesheet" type="text/css"/>
+  		    
+</head>
+<body>
+
+
+<div class="all">
+
+		<button type="button" class="btn btn-info btn-lg" data-toggle="modal"
+			data-target="#myModal" id="pesquisarCliente" onclick="verificar();" style="display:none">Pesquisar</button>
+	
+		<button type="button" class="btn btn-info btn-lg" data-toggle="modal"
+			data-target="#myModalCadastrar" id="criarCliente"  style="display:none">Cadastrar</button>
+			
+		<button type="button" class="btn btn-info btn-lg" data-toggle="modal" 
+			id="logout">Sair</button>
+	
+	<div class="modal fade" id="myModal" role="dialog"
+		style="display: none;">
+		<div class="modal-dialog">
+
+			<!-- Modal content-->
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal">×</button>
+					<h4 class="modal-title">Gerenciamento de Clientes</h4>
+				</div>
+				<div class="modal-body">
+					<div class="form-group">
+						<form>
+							Nome a ser pesquisado: 
+			                <input type="text" name="pesquisa" id="pesquisa" class="form-control" placeholder="Informe o telefone para pesquisa"> 
+			                <input type="button" value="Pesquisar" onclick="buscarPessoa();" class="btn btn-default" />
+			                
+			                <input id="submit" type="button" class="btn btn-default" value="Mostrar no Mapa" ></br>
+			                <div  id="divPesquisa" style="display:none">
+				                <label id="campos">
+				              		Nome: 
+				              	</label>	
+				                	<input type="text" name="nome" id="nomeP" class="form-control" > 
+				               	<label id="campos">
+				               		Telefone: 
+				               	</label>
+				                	<input type="text" name="telefone" id="telefoneP" class="form-control" size="20" maxlength="14" onkeypress="mascara(this)" >                 
+								<label id="campos">
+									Rua:
+								</label>
+
+					                <input type="text" name="rua" id="ruaP" class="form-control" >
+								<label id="campos">
+									Número: 
+								</label>
+					                <input type="text" name="numero" id="numeroP" class="form-control" > 
+				              	<label id="campos">
+				              		Bairro: 
+				              	</label>
+				                	<input type="text" name="bairro" id="bairroP" class="form-control" > 
+				             	<label id="campos">	
+				             		Ponto de Referência 
+				             	</label>
+				               		<input type="text" name="pontoReferencia"	id="pontoReferenciaP" class="form-control" > 
+				                <label id="campos">
+				            		Cidade
+				            	</label>
+				                	<input type="text" name="cidade" id="cidadeP" class="form-control" >
+
+									<input type="button" id="atualizar" value="atualizar" onclick="atualizar();" class="btn btn-default" />
+							</div>
+						</form>
+					</div>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal"
+						class="btn btn-default">Fechar</button>
+				</div>
+			</div>
+
+		</div>
+	</div>
+
+	<div class="modal fade" id="myModalCadastrar" role="dialog"
+		style="display: none;">
+		<div class="modal-dialog">
+
+			<!-- Modal content-->
+			<div class="modal-content"  >
+				<div class="modal-header">
+					<button type="button" class="close" id="esconder"data-dismiss="modal">×</button>
+					<h4 class="modal-title">Cadastro de Clientes</h4>
+				</div>
+				<div class="modal-body">
+					<div class="form-group">
+						<form id="criarClienteForm">							
+		              Nome: 
+		                <input type="text" name="nome" id="nome" class="form-control" placeholder="Informe o nome" required />
+		              Telefone: 
+		                <input type="text" name="telefone" id="telefoneP" class="form-control" required placeholder="Informe o telefone com apenas números" maxlength="14" onkeypress="mascara(this)">                 
+		                
+		              Rua:
+						<input type="text" name="rua" id="rua" class="form-control" placeholder="Informe a rua">
+					  Número: 
+		                <input type="text" name="numero" id="numero" class="form-control" placeholder="Informe o número"> 
+		              Bairro: 
+		                <input type="text" name="bairro" id="bairro" class="form-control" placeholder="Informe o bairro"> 
+		              Ponto referencia 
+		                <input type="text" name="pontoReferencia"	id="pontoReferencia" class="form-control" placeholder="Informe um ponto de referência"> 
+		              Cidade 
+		                <input type="text" name="cidade" id="cidade" class="form-control" placeholder="Informe a cidade">
+
+
+						<input type="button" value="cadastrar" id="cadastrar"  class="btn btn-default" onclick="cadastrarCliente();"/>
+
+
+						</form>
+					</div>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal"
+						class="btn btn-default">Fechar</button>
+				</div>
+			</div>
+
+		</div>
+	</div>
+	</div>
+
+	 
+    <div id="map"></div>
+
+  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAnNjbSaRkLKUY-mNOLw50kiyvxXv7qqOM&signed_in=true&callback=initMap"
+        async defer></script>
+
+</body>
+</html>
